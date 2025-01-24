@@ -50,7 +50,7 @@ $userName = auth()->user()->name ?? "";
             @if($showSidebar ?? true) <!-- If $showSidebar is true or not defined, show the sidebar -->
                 <div class="sidebar pe-4 pb-3">
                     <nav class="navbar bg-light navbar-light">
-                        <a href="{{ route('admin.index') }}" class="navbar-brand mx-4 mb-3">
+                        <a href="{{ route('order.index') }}" class="navbar-brand mx-4 mb-3">
                             <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>
                                 المدار التقنى للبصمة
 
@@ -77,7 +77,7 @@ $userName = auth()->user()->name ?? "";
                                     <a href="element.html" class="dropdown-item">Other Elements</a>
                                 </div>
                             </div> --}}
-                            <a href="" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>اجهزة البصمة</a>
+                            <a href="{{ route('order.index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i> Orders </a>
                             <br>
 
                             <!-- Secure Logout -->
@@ -85,7 +85,7 @@ $userName = auth()->user()->name ?? "";
                                 @csrf
                             </form>
                             <a href="#" class="nav-item nav-link active" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out-alt me-2"></i> تجسيل خروج
+                                <i class="fa fa-sign-out-alt me-2"></i> Logout
                             </a>
                         </div>
 

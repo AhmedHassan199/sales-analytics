@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,9 @@ Route::get('admin/widget', [DashboardAdminController::class, 'widget'])->name('a
 Route::get('/', function () {
     return view('welcome');
 });
+/////////////////////// orders logic
+Route::get('/orders', [OrderController::class, 'index'])->name("order.index");
+Route::get('/orders/create', [OrderController::class, 'create'])->name("orders.create");
+Route::post('/orders', [OrderController::class, 'store']);
+Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('order.delete');
+////////////////////////////////////////////////////////////////////////////////
