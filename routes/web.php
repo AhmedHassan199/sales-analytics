@@ -41,6 +41,6 @@ Route::post('/orders', [OrderController::class, 'store']);
 Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('order.delete');
 ////////////////////////////////////////////////////////////////////////////////
 // dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 

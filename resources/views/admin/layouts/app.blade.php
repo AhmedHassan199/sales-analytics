@@ -77,6 +77,9 @@ $userName = auth()->user()->name ?? "";
                                     <a href="element.html" class="dropdown-item">Other Elements</a>
                                 </div>
                             </div> --}}
+
+                            <a href="{{ route('dashboard.index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i> Dashboard </a>
+                            <br>
                             <a href="{{ route('order.index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i> Orders </a>
                             <br>
 
