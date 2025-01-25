@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,7 @@ Route::get('/orders/create', [OrderController::class, 'create'])->name("orders.c
 Route::post('/orders', [OrderController::class, 'store']);
 Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('order.delete');
 ////////////////////////////////////////////////////////////////////////////////
+// dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+

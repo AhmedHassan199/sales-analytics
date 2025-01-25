@@ -11,8 +11,10 @@ class OrderService {
     }
 
     public function createOrder(array $data) {
-        $data['total_price'] = $data['quantity'] * $data['price'];
+        $data['total_price'] = $data['quantity'] * $data['total_price'];
         unset($data['price']);
+        $data['created_at'] = now();
+        $data['updated_at'] = now();
         return $this->orderRepository->createOrder($data);
     }
 
