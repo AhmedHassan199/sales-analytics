@@ -13,7 +13,6 @@ The system features:
   - Service Repository Design Pattern.
   - form request for validation
   - resources to handle responce
-  - ApiResponceHelper to handle responce 
 
 ## Prerequisites
 
