@@ -1,67 +1,135 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Advanced Real-Time Sales Analytics System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This system, named "real_time_sales_analytics_system", allows you to manage and analyze sales data in real-time. It provides APIs for managing orders, analytics, and integrating external services. The system also includes real-time reporting and AI integration for dynamic product recommendations based on sales data. Additionally, it integrates with a weather API to adjust recommendations based on seasonality.
 
-## About Laravel
+The system features:
+- Real-time order management and reporting.
+- Sales insights (total revenue, top products, and real-time order count).
+- AI-powered recommendations for product promotions.
+- Weather-based dynamic pricing and promotion adjustments.
+- WebSocket integration for real-time updates.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Desgin Pattern 
+  - Service Repository Design Pattern.
+  - form request for validation
+  - resources to handle responce
+  - ApiResponceHelper to handle responce 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prerequisites
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Before you begin, make sure you have the following installed:
 
-## Learning Laravel
+- **PHP** >= 8.2
+- **Composer** (for managing PHP dependencies)
+- **Laravel** >= 10 (for the backend framework)
+- **MySQL** (for database management)
+## Setup Instructions
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clone the Repository:**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    ```bash
+    https://github.com/AhmedHassan199/sales-analytics.git
+    cd sales-analytics
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Install Dependencies:**
 
-## Laravel Sponsors
+    ```bash
+    composer install
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    This will install the required PHP dependencies listed in `composer.json`
+    
 
-### Premium Partners
+3. **Configure Environment:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    - Duplicate the `.env.example` file and rename it to `.env`.
+    - Configure your database settings in the `.env` file.
+    - Make sure you set the appropriate `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` values for your MySQL setup.
 
-## Contributing
+4. **Generate Application Key:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```bash
+    php artisan key:generate
+    ```
 
-## Code of Conduct
+    This will generate the application key for Laravel to encrypt data and sessions.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Run Migrations and Seeders:**
 
-## Security Vulnerabilities
+    ```bash
+    php artisan migrate
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    This will create the necessary database tables and seed initial data for the application (including the admin user and necessary roles).
 
-## License
+6. **Start the Development Server:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# sales-analytics
+    ```bash
+    php artisan serve
+    ```
+
+
+    ## API Endpoints
+
+### Orders
+- `POST /orders`: Add a new order with the following fields:
+  - `product_id` (integer)
+  - `quantity` (integer)
+  - `price` (decimal)
+  - `date` (datetime)
+
+### Analytics
+- `GET /analytics`: Retrieve real-time sales analytics, including:
+  - `total_revenue`: Total revenue from all orders.
+  - `top_products`: Top-selling products by quantity or revenue.
+  - `revenue_changes_last_minute`: Revenue change in the last 1 minute.
+  - `order_count_last_minute`: Number of orders placed in the last 1 minute.
+
+### Recommendations
+- `GET /recommendations`: Retrieve product promotion suggestions based on recent sales data.
+  - Uses AI to recommend products for promotion to increase revenue.
+
+### Real-Time Reporting
+- **WebSocket Support**: Clients can subscribe to real-time updates on:
+  - New orders
+  - Updated analytics
+
+## Entity-Relationship Diagram (ERD)
+
+### Users
+- `id` (Primary Key)
+- `name`
+- `email`
+- `password`
+- `role` (Enum: 'admin', 'author', 'client')
+- `created_at`
+- `updated_at`
+
+### Orders
+- `id` (Primary Key)
+- `user_id` (Foreign Key referencing `users.id`)
+- `product_id` (Foreign Key referencing `products.id`)
+- `quantity` (Integer)
+- `price` (Decimal)
+- `date` (Datetime)
+- `created_at`
+- `updated_at`
+
+### Products
+- `id` (Primary Key)
+- `name` (String, required)
+- `category_id` (Foreign Key referencing `categories.id`)
+- `price` (Decimal, required)
+- `created_at`
+- `updated_at`
+
+### 1. **OpenWeather API Key (Weather Integration)**
+### 2. **Caht API Key **
+
+In this project, parts of the code were generated or assisted by AI (using **OpenAI's ChatGPT**), while others were written manually.
+
+
+
+
+
