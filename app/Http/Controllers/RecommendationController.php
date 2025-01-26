@@ -16,10 +16,8 @@ class RecommendationController extends Controller
 
     public function getRecommendations()
     {
-        // Fetch recent sales data
         $salesData = $this->recommendationService->getSalesData();
 
-        // Get recommendations from AI system
         $recommendations = $this->recommendationService->getAIRecommendations($salesData);
 
         return response()->json(['recommendations' => $recommendations]);

@@ -6,13 +6,11 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardRepository
 {
-    // Get total revenue
     public function getTotalRevenue()
     {
         return DB::table('orders')->sum('total_price');
     }
 
-    // Get top products by total sales
     public function getTopProducts()
     {
         return DB::table('orders')
@@ -24,7 +22,6 @@ class DashboardRepository
             ->get();
     }
 
-    // Get revenue changes in the last 1 minute
     public function getRevenueChanges()
     {
         $oneMinuteAgo = now()->subMinute();
@@ -33,7 +30,6 @@ class DashboardRepository
             ->sum('total_price');
     }
 
-    // Get order count in the last 1 minute
     public function getOrderCount()
     {
         $oneMinuteAgo = now()->subMinute();
