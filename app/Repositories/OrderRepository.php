@@ -19,4 +19,14 @@ class OrderRepository {
         return DB::table('orders')->where('id', $id)->delete();
     }
 
+
+    public function getSalesData()
+    {
+        return DB::table('orders')
+            ->select('product_id', DB::raw('SUM(total_price) as total_sales'))
+            ->groupBy('product_id')
+            ->orderByDesc('total_sales')
+            ->get();
+    }
+
 }
